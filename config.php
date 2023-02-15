@@ -13,6 +13,8 @@ session_start();
 define("BURL" , "http://localhost/medical_service/");
 define("BURLA" , "http://localhost/medical_service/admin/");
 define("ASSETS" , "http://localhost/medical_service/assets/");
+define("BUA","http://127.0.0.1/tutorials/medical/admin/");
+
 
 // start define {{base-link}} for project by __DIR__ {{it's here extend to here}}
 define("BL",__DIR__.'/');

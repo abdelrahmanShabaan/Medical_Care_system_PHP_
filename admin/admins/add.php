@@ -1,4 +1,4 @@
-<?php  require_once'../../config.php'; ?>
+<?php  require_once '../../config.php'; ?>
 
 <?php  require_once BLA.'inc/header.php'; ?>
 <?php  require_once BL.'functions/vaildate.php'; ?>
@@ -23,12 +23,14 @@
                        VALUES ('$name', '$email' , '$hashedPassword')";
                        $success_message = db_insert($sql);
 
-                }else 
+                }
+                else 
                 {
-                    $error_message = "please correct email ";
+                    $error_message = "please Type correct email ";
                 }
 
-            }else 
+            }
+            else 
             {
                 $error_message = "please Fill All field";
             }

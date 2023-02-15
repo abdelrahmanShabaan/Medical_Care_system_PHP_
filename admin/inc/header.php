@@ -1,3 +1,8 @@
+<?php 
+
+  if(!isset($_SESSION['admin_name']))
+    header("location:" . BURLA . 'login.php');
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,7 +36,7 @@
           Cities
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Add</a>
+          <a class="dropdown-item" href="<?php echo BURL .'/cities/add.php' ?>">Add</a>
           <a class="dropdown-item" href="#">View All</a>
         </div>
       </li>
@@ -49,7 +54,7 @@
           Orders
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?php echo BUA.'orders/' ?>">View All</a>
+          <a class="dropdown-item" href="<?php echo BURLA.'orders/' ?>">View All</a>
         </div>
       </li>
       <li class="nav-item dropdown">
