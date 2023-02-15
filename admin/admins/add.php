@@ -29,8 +29,7 @@
                     $error_message = "please Type correct email ";
                 }
 
-            }
-            else 
+            }else 
             {
                 $error_message = "please Fill All field";
             }

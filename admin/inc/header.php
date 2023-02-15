@@ -34,10 +34,10 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Cities
-        </a>
+        </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?php echo BURL .'/cities/add.php' ?>">Add</a>
-          <a class="dropdown-item" href="#">View All</a>
+          <a class="dropdown-item" href="<?php echo BURLA .'cities/add.php'; ?>">Add</a>
+          <a class="dropdown-item" href="<?php echo BURLA.'cities/viewall.php'; ?>">View All</a>
         </div>
       </li>
       <li class="nav-item dropdown">
