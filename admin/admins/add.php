@@ -13,10 +13,15 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
             
-            if (checkEmpty($name) or checkEmpty($password) or checkEmpty($email))
+            if (checkEmpty($name) AND checkEmpty($password) AND checkEmpty($email))
             {
                 if (ValidEmail($email))
                 {
+                    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+
+                    $sql = "Insert INTO admins (`admin_name` , `admin_email`, `admin_password`)
+                       VALUES ('$name', '$email' , '$hashedPassword')";
+                       $success_message = db_insert($sql);
 
                 }else 
                 {

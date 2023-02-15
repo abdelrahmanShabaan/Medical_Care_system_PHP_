@@ -6,7 +6,7 @@
  * third:: To make require_once that get extends of database file here to use everywhere in our project
  */
 
-//  Start session {{First thing in our project}}
+//  Start session {{First thing in our project}} to make when i include this make session open
 session_start();
 
 // Start define const {{path}} in small characters
