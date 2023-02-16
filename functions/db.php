@@ -27,6 +27,20 @@ function db_insert($sql) {
     return false;
 }
 
+// update existing record 
+
+function db_update($sql)
+{
+    global $conn;
+    $result = mysqli_query($conn,$sql);
+    if($result)
+    {
+        return "Updated Success";
+    }
+    return false;
+}
+
+
 
 
 // get row from databse 
@@ -44,12 +58,41 @@ function getRow($table , $field , $value)
 
             if(mysqli_num_rows($result))
             {
-                $rows[] = mysqli_fetch_assoc($result);
+                $rows[] = mysqli_fetch_assoc($result) > 0;
                 return $rows[0];
 
             }
 
         }
         return false;
-
 }
+
+
+
+// get row from databse 
+
+function getRows($table) 
+
+{
+        global $conn;
+        $sql = "SELECT * FROM `$table`";
+
+        $result = mysqli_query($conn , $sql);
+
+        if($result) 
+        {
+            $rows = [];
+
+            if(mysqli_num_rows($result) > 0)
+            {   
+                while($row = mysqli_fetch_assoc($result))
+                {
+                    $rows[] = $row;
+                }
+
+            }
+                return $rows;
+        }
+        return false;
+}
+
