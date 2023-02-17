@@ -9,8 +9,8 @@ $conn = mysqli_connect($server , $username , $password , $dbname);
 
 if(!$conn)
 {
-    die ("problem to connect to database" . mysqli_connect_error());
-
+    echo "Error In Connection : ".mysqli_connect_error();
+    return false;
 }
 
 
@@ -45,26 +45,28 @@ function db_update($sql)
 
 // get row from databse 
 
-function getRow($table , $field , $value) 
-
+function getRow($field,$id,$table)
 {
-        global $conn;
-        $sql = "SELECT * FROM `$table` WHERE `field` = '$value' ";
-        $result = mysqli_query($conn , $sql);
-
-        if($result) 
-        {
-            $rows = [];
-
-            if(mysqli_num_rows($result))
-            {
-                $rows[] = mysqli_fetch_assoc($result) > 0;
-                return $rows[0];
-
-            }
-
-        }
+    global $conn;
+    $sql = "SELECT * FROM `$table` WHERE `$field`='$id' ";
+    $result = mysqli_query($conn,$sql);
+    if(!$result)
+    {
+        echo mysqli_error($conn);
+    }
+    $rows = [];
+    if(mysqli_num_rows($result) > 0)
+    {
+        $rows[] = mysqli_fetch_assoc($result);
+    }
+    if(count($rows)>0)
+    {
+        return $rows[0];
+    }
+    else 
+    {
         return false;
+    }
 }
 
 

@@ -66,6 +66,9 @@
           <a class="dropdown-item" href="#">View All</a>
         </div>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<?php echo BURLA . 'logout.php';?>">Logout </a>
+      </li>
     </ul>
   </div>
 </nav>

@@ -6,17 +6,14 @@
 <?php  
 if(isset($_GET['id']) && is_numeric($_GET['id']))
 { 
-    $row = getRow('cities' , 'city_id',$_GET['id']);
-    if(!$row)
-    { 
+    $row = getRow('city_id',$_GET['id'],'cities');
+    if(!$row){ header("location:".BURL); }
 
     $city_id = $row['city_id'];
-
-    }
 }
 else
 {
-    header("location:".BURLA);
+    header("location:".BUA);
 }
 
 
@@ -25,9 +22,9 @@ else
 
 
 
-<div class="col-sm-6 offset-sm-3 border p-3">
+    <div class="col-sm-6 offset-sm-3 border p-3">
         <h3 class="text-center p-3 bg-primary text-white">Edit City</h3>
-        <form method="post" action="<?php echo BURLA.'cities/update.php'; ?>" >
+        <form method="post" action="<?php echo BUA.'cities/update.php'; ?>" >
             <div class="form-group">
                 <label >Name Of City</label>
                 <input type="text" name="name" value="<?php echo $row['city_name']; ?>" class="form-control" >
@@ -38,7 +35,6 @@ else
         </form>
        
     </div>
-
 
 <?php require BLA.'inc/footer.php';  ?>
 

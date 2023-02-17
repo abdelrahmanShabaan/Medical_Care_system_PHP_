@@ -1,4 +1,12 @@
 <?php require_once '../config.php'; ?>
+
+<?php 
+    if(isset($_SESSION['admin_name']))
+    {
+        header("location:". BURLA . 'index.php');
+    }
+
+?>
 <?php require BL . 'functions/vaildate.php'; ?>
 
 
@@ -26,46 +34,53 @@
         if(isset($_POST['submit'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
-            if(checkEmpty($email) && checkEmpty($password))
+            if (checkEmpty($email) && checkEmpty($password)) 
             {
-                    if(ValidEmail($email))
-                    { 
-                        $check = getRow('admins', 'admin_email' , $email);
-                        if($check)
+                
+                if (validEmail($email)) 
+                {
+                    
+                    $check = getRow('admin_email',$email,'admins');
+                    if ($check) 
+                    {
+                        $check_password = password_verify($password,$check['admin_password']);
+                        if($check_password)
                         {
-                            $check_password = password_verify ($password,$check['admin_password']);
-                            if($check_password)
-                            {
-                                    $_SESSION['admin_name'] = $check['admin_name'];
-                                    $_SESSION['admin_email'] = $check['admin_email'];
-                                    $_SESSION['admin_id'] = $check['admin_id'];
+                            $_SESSION['admin_name'] = $check['admin_name'];
+                            $_SESSION['admin_email'] = $check['admin_email'];
+                            $_SESSION['admin_id'] = $check['admin_id'];
 
-                                    header("location:" . BURLA . 'index.php');
-                            }
-                            else 
-                            {
-                                $error_message = "Data Not Correct ";
-                            }
+                           
+                           
+                            header("location:".BURLA .'index.php');
+                        }
+                        else 
+                        {
+                            $error_message = "Incorrect Information";
                         }
                     }
-                    else
+                    else 
                     {
-
-                        $error_message = "please Type correct email ";
-
+                        $error_message = "Wrong Email";
                     }
-            }else
-            {
-                $error_message = "Please Fill All Fields";                       
+                }
+                else 
+                {
+                    $error_message = "Type Correct Email";
+                }
             }
+            else 
+            {
+                $error_message = "Please Fill All Fields";
+            }
+            
         }
         ?>
 
-
-   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" class="border p-5" >
+<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" class="border p-5" >
                 <div class="row">
                     
-                    <?php // require BL.'functions/error.php'; ?>
+                    <?php  require BL.'functions/error.php'; ?>
                     <div class="col-sm-12  ">
                         <h3 class="text-center p-3 text-white">Login</h3>
                     </div>
@@ -89,6 +104,7 @@
                 
             </form>
         </div>
+
 
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
