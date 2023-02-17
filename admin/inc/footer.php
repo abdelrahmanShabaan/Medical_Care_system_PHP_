@@ -1,8 +1,46 @@
 
+
+
+    <!-- Optional JavaScript -->
+  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="<?php echo ASSETS; ?>/js/jquery-3.4.1.min.js" ></script>
+    <script src="<?php echo ASSETS; ?>/js/popper.min.js" ></script>
+    <script src="<?php echo ASSETS; ?>/js/bootstrap.min.js" ></script>
+
+  
+    <script>
+        $(".delete").click(function()
+        {
+
+          var item_id = $(this).attr("data-id");
+          var table = $(this).attr("data-table");
+          var field = $(this).attr("data-field");
+
+            $.ajax({
+              type:"GET",
+              url:"<?php echo BURLA.'inc/delete.php'; ?>",
+              data:{item_id:item_id,table:table,field:field},
+              dataType:"JSON",
+              success:function(data)
+              {
+                  // console.log(data.message);
+                  if(data.message == "success")
+                  {
+                    alert("Deleted Success");
+                  }
+                  else 
+                  {
+                    // alert("Error");
+                  }
+                  
+              }
+            })
+
+        });
+    </script>
+
+
   </body>
 </html>

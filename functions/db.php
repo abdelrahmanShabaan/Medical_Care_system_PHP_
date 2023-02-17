@@ -55,7 +55,7 @@ function getRow($field,$id,$table)
         echo mysqli_error($conn);
     }
     $rows = [];
-    if(mysqli_num_rows($result) > 0)
+    if(mysqli_num_rows($result) > 0 )
     {
         $rows[] = mysqli_fetch_assoc($result);
     }
@@ -98,3 +98,15 @@ function getRows($table)
         return false;
 }
 
+
+function deleteRow($sql){
+    global $conn;
+    
+    $result = mysqli_query($conn , $sql);
+
+    if($result)
+    {
+        return "Deleted success";
+    }
+    return false;
+}

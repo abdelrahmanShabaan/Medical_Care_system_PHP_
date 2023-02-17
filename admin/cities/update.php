@@ -5,43 +5,41 @@
 
 
 
+
 <?php 
 
-        if(isset($_POST['submit']))
+if(isset($_POST['submit']))
+{
+    $city_id = $_POST['city_id'];
+    $name = ($_POST['name']);
+    $notEmpty = checkEmpty($name);
+  
+    if($notEmpty)
+    {
+        $less = checkLess($name,3);
+        if($less)
         {
-            $name = $_POST['name'];
-            $city_id = $_POST['city_id'];
-
-            if(checkEmpty($name) && checkLess($name , 3))
-            {
-                $row = getRow('cities' , 'city_id' , $city_id);
-                
-                if($row)
-                {
-                    $sql = "UPDATE cities SET `city_name`='$name' WHERE `city_id`= '$city_id' ";
-                    $success_message = db_update($sql);
-                    header( "refresh:2;url=".BURLA."cities");
-
-                }
-                else 
-                {
-                    $error_mess = "please Type correct Data";
-                }
-              
-                }
-                else
-                {
-                    $error_mess = "please Fill all field";
-
-                }
-            require BL .'functions/messages.php';
+            $sql = "UPDATE cities SET `city_name`='$name' WHERE `city_id`='$city_id' ";
+            $success_message = db_update($sql);
+            header( "refresh:2;url=".BURLA.'cities/viewall.php');
         }
+        else 
+        {
+            $error_message = "Please Type Correct City";
+        }
+    }
+    else 
+    {
+        $error_message = "Please Type City Name";
+    }
 
-        
-
+    require BL.'functions/error.php';
+}
 
 
 ?>
+
+
 
 
 
