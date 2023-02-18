@@ -55,6 +55,12 @@
 
 
 
+                <div class="container text-left">
+                    <a href="<?PHP ECHO BURLA . 'login.php';?>"><h1>Login as Admin</h1></a>
+                </div>
+
+
+
                 <form class="row" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="mt-5" >
                     <?php require BL.'functions/error.php'; ?>
                     <div class="col-sm-6 ">
