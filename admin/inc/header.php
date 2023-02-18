@@ -45,8 +45,8 @@
           Services
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Add</a>
-          <a class="dropdown-item" href="#">View All</a>
+        <a class="dropdown-item" href="<?php echo BURLA.'services/add.php' ?>">Add</a>
+        <a class="dropdown-item" href="<?php echo BURLA.'services/viewall.php' ?>">View All</a>
         </div>
       </li>
       <li class="nav-item dropdown">
