@@ -20,6 +20,7 @@
   </head>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="<?php echo BURL ?>"> <img src="<?php echo BURL.'assets/images/logo2.png'; ?>" width="70" alt="LOGO"> </a>
   <a class="navbar-brand" href="#">Logo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -54,7 +55,7 @@
           Orders
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?php echo BURLA.'orders/' ?>">View All</a>
+        <a class="dropdown-item" href="<?php echo BURLA.'orders/' ?>">View All</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -63,7 +64,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo BURLA . 'admins/add.php'?>">Add</a>
-          <a class="dropdown-item" href="#">View All</a>
+                        <a class="dropdown-item" href="<?php echo BURLA.'admins/' ?>">View All</a>
         </div>
       </li>
       <li class="nav-item active">

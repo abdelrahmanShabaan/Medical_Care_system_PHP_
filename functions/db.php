@@ -110,3 +110,28 @@ function deleteRow($sql){
     }
     return false;
 }
+
+
+
+// count of records
+function count_table($table)
+{
+    global $conn;
+    $sql = "SELECT * FROM `$table` ";
+    
+    $result = mysqli_query($conn, $sql);
+    if(!$result)
+    {
+        echo mysqli_error($conn);
+    }
+    $rows = [];
+    if(mysqli_num_rows($result) > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result)) 
+        {
+            $rows[] = $row;
+        }
+    }
+   return count($rows);
+}
+    

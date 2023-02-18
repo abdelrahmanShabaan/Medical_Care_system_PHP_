@@ -1,19 +1,157 @@
-<?php require_once("config.php"); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<?php  require 'config.php';  ?>
+<?php require BL.'functions/vaildate.php';  ?>
 
-    <title>Document</title>
-</head>
-<body>
-    <div class="text-center">
-    <h1 class="text-center" style="margin-top:10px;">Hello in Home Page </h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo ASSETS; ?>/css/bootstrap.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo ASSETS; ?>/css/style.css" >
+
+    <title>Home Page</title>
+  </head>
+  <body>
+   
+
+
+    <div class="cont-main" style="background:url(<?php echo ASSETS .'images/bg-11.jpg';?>)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                <?php 
+                if (isset($_POST['submit'])) 
+                {
+                    $service = $_POST['service'];
+                    $city = $_POST['city'];
+                    $mobile = $_POST['mobile'];
+                    $notes = ($_POST['notes']);
+                    $name =  ($_POST['name']);
+                    $email = ($_POST['email']);
+                    
+                    if (checkEmpty($mobile) && checkEmpty($name)) 
+                    {
+                        
+                        $sql  = "INSERT INTO orders (`order_name`,`order_email`,`order_mobile`,`order_serv_id`,`order_city_id`,`order_notes`)
+                            VALUES ('$name','$email','$mobile','$service','$city','$notes')
+                         ";
+                         $success_message = db_insert($sql);
+                    }
+                    else 
+                    {
+                        $error_message = "Please Type Your Name And Your Mobile";
+                    }
+
+                    
+                    
+                }
+        ?>
+
+
+
+
+                <form class="row" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="mt-5" >
+                    <?php require BL.'functions/error.php'; ?>
+                    <div class="col-sm-6 ">
+                        <div class="form-group mt-3">
+
+                            <label for="serv" class="font-1">Choose Service</label>
+                            <select name="service" id="serv" class="form-control font-1">
+                                <?php $data = getRows('services');  $x=1; ?>
+                                <?php foreach($data as $row){   ?>
+                                <option value="<?php echo $row['serv_id']; ?>">
+                                    <?php echo $row['serv_name']; ?>
+                                </option>
+                                <?php } ?> 
+                            </select>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6 ">
+                        <div class="form-group mt-3">
+
+                            <label for="serv" class="font-1">Choose City</label>
+                            <select name="city" id="serv" class="form-control font-1">
+                                <?php $dataCity = getRows('cities');  $x=1; ?>
+                                <?php foreach($dataCity as $row){   ?>
+                                <option value="<?php echo $row['city_id']; ?>">
+                                    <?php echo $row['city_name']; ?>
+                                </option>
+                                <?php } ?> 
+                            </select>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+
+                            <label for="serv" class="font-1">Type Your Name *</label>
+                            <input type="text" name="name"  class="form-control font-1 bg-base">
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group ">
+
+                            <label for="serv" class="font-1">Type Your Email</label>
+                            <input type="email" name="email"  class="form-control font-1 bg-base">
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group ">
+
+                            <label for="serv" class="font-1">Type Your Mobile *</label>
+                            <input type="text" name="mobile"  class="form-control font-1 bg-base">
+                            
+                        </div>
+                    </div>
+                    
+
+
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+
+                            <label for="serv" class="font-1">Type Notes</label>
+                            <textarea name="notes"  class="form-control font-1 bg-base"  rows="5"></textarea>
+                            
+                        </div>
+                    </div>
+
+
+
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-success form-control">Send</button>
+                        </div>
+                    </div>
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-</body>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="<?php echo ASSETS; ?>/js/jquery-3.4.1.min.js" ></script>
+    <script src="<?php echo ASSETS; ?>/js/popper.min.js" ></script>
+    <script src="<?php echo ASSETS; ?>/js/bootstrap.min.js" ></script>
+  </body>
 </html>
